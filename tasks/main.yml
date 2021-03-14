@@ -1,0 +1,57 @@
+---
+# tasks file for qbittorrent-nox
+- name: add qBittorrent repository
+  ansible.builtin.apt_repository:
+    repo: "ppa:qbittorrent-team/qbittorrent-{{ qbt_version }}"
+    state: present
+    update_cache: yes
+  become: yes
+
+- name: install qBittorrent
+  ansible.builtin.apt:
+    name: qbittorrent-nox
+    state: present
+  become: yes
+
+- name: create local user
+  ansible.builtin.user:
+    name: "{{ qbt_user }}"
+    shell: /usr/sbin/nologin
+    state: present
+  become: yes
+
+- name: create qBittorrent config directory
+  ansible.builtin.file:
+    mode: 0755
+    path: "/home/{{ qbt_user }}/.config/qBittorrent/"
+    state: directory
+    owner: "{{ qbt_user }}"
+    group: "{{ qbt_user }}"
+  become: yes
+
+- name: create qBittorrent config file
+  ansible.builtin.template:
+    src: qBittorrent.conf.j2
+    dest: "/home/{{ qbt_user }}/.config/qBittorrent/qBittorrent.conf"
+    owner: "{{ qbt_user }}"
+    group: "{{ qbt_user }}"
+    mode: 0644
+    force: no
+  become: yes
+
+- name: create qBittorrent service file
+  ansible.builtin.template:
+    src: qbittorrent.service.j2
+    dest: /etc/systemd/system/qbittorrent.service
+    owner: root
+    group: root
+    mode: 0600
+  become: yes
+  notify: reload systemd daemon
+
+- name: enable qBittorrent service
+  ansible.builtin.systemd:
+    name: qbittorrent
+    enabled: yes
+    state: started
+  become: yes

@@ -1,0 +1,28 @@
+[AutoRun]
+enabled=true
+program={{ content_path }}/scripts/flexget_api.sh
+
+[BitTorrent]
+Session\GlobalMaxSeedingMinutes={{ qbt_seed_days * 24 * 60 }}
+Session\TorrentContentLayout=Subfolder
+
+[LegalNotice]
+Accepted=true
+
+[Preferences]
+Bittorrent\MaxConnecs=1000
+Bittorrent\MaxConnecsPerTorrent=-1
+Bittorrent\MaxUploads=-1
+Bittorrent\MaxUploadsPerTorrent=-1
+Bittorrent\MaxRatioAction=3 
+Connection\PortRangeMin={{ qbt_port }}
+Connection\UPnP=false
+Downloads\SavePath={{ content_path }}/torrent/done/
+Downloads\TempPath={{ content_path }}/torrent/temp/
+Downloads\TempPathEnabled=true
+General\Locale=sv_SE
+Queueing\MaxActiveDownloads=1
+Queueing\MaxActiveTorrents=15
+Queueing\MaxActiveUploads=15
+Queueing\QueueingEnabled=true
+WebUI\LocalHostAuth=false

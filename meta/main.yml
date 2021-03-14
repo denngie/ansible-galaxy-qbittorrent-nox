@@ -1,0 +1,18 @@
+galaxy_info:
+  author: Dennis Israelsson
+  description: Installs qBittorrent headless version on your Ubuntu server
+
+  license: MIT
+
+  min_ansible_version: 2.10
+
+  platforms:
+  - name: Ubuntu
+    versions:
+    - 20.04
+
+  galaxy_tags:
+    - qbittorrent
+    - qbittorrent-nox
+
+dependencies: []
