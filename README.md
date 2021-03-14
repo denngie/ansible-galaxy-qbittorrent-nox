@@ -1,4 +1,4 @@
-Role Name
+qbittorrent_nox
 =========
 
 Installs qBittorrent headless version on your Ubuntu server
