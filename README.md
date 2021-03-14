@@ -23,7 +23,7 @@ qbt_port: port used by qBittorrent
 Dependencies
 ------------
 
-Not a dependency but this role is intended to be used with my other role flexget-daemon
+Not a dependency but this role is intended to be used with my other role denngie.flexget_daemon
 
 Example Playbook
 ----------------
@@ -31,9 +31,9 @@ Example Playbook
 ```yaml
 ---
 - name: Apply qbittorrent-nox role
-  hosts: qbittorrent-nox
+  hosts: qbittorrent-server
   roles:
-    - qbittorrent-nox
+    - denngie.qbittorrent_nox
 ```
 
 License
