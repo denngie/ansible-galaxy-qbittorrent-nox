@@ -1,5 +1,5 @@
 galaxy_info:
-  role_name: qBittorrent_nox
+  role_name: qbittorrent_nox
   author: Dennis Israelsson
   description: Installs qBittorrent headless version on your Ubuntu server
 
