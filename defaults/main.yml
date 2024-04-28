@@ -1,8 +1,8 @@
 ---
 # defaults file for qbittorrent-nox
-content_path: /mnt/raid
+qbittorrent_nox_content_path: /mnt/torrent
 
-qbt_version: stable
-qbt_user: qbtuser
-qbt_seed_days: 10
-qbt_port: 39999
+qbittorrent_nox_qbt_version: stable
+qbittorrent_nox_qbt_user: qbtuser
+qbittorrent_nox_qbt_seed_days: 10
+qbittorrent_nox_qbt_port: 39999

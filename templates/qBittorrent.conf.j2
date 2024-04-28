@@ -1,28 +1,38 @@
+[Application]
+FileLogger\Enabled=false
+
 [AutoRun]
 enabled=true
-program={{ content_path }}/scripts/flexget_api.sh
+program={{ qbittorrent_nox_content_path }}/flexget_api.sh
 
 [BitTorrent]
-Session\GlobalMaxSeedingMinutes={{ qbt_seed_days * 24 * 60 }}
+Session\DefaultSavePath={{ qbittorrent_nox_content_path }}/torrent/done
+Session\GlobalDLSpeedLimit=921600
+Session\GlobalMaxSeedingMinutes={{ qbittorrent_nox_qbt_seed_days * 24 * 60 }}
+Session\GlobalUPSpeedLimit=921600
+Session\MaxActiveDownloads=1
+Session\MaxActiveTorrents=15
+Session\MaxActiveUploads=15
+Session\MaxConnections=1000
+Session\MaxConnectionsPerTorrent=-1
+Session\MaxRatioAction=3
+Session\MaxUploads=-1
+Session\MaxUploadsPerTorrent=-1
+Session\Port={{ qbittorrent_nox_qbt_port }}
+Session\QueueingSystemEnabled=true
+Session\TempPath={{ qbittorrent_nox_content_path }}/torrent/temp
+Session\TempPathEnabled=true
 Session\TorrentContentLayout=Subfolder
 
 [LegalNotice]
 Accepted=true
 
+[Network]
+PortForwardingEnabled=false
+
 [Preferences]
-Bittorrent\MaxConnecs=1000
-Bittorrent\MaxConnecsPerTorrent=-1
-Bittorrent\MaxUploads=-1
-Bittorrent\MaxUploadsPerTorrent=-1
-Bittorrent\MaxRatioAction=3 
-Connection\PortRangeMin={{ qbt_port }}
-Connection\UPnP=false
-Downloads\SavePath={{ content_path }}/torrent/done/
-Downloads\TempPath={{ content_path }}/torrent/temp/
-Downloads\TempPathEnabled=true
 General\Locale=sv_SE
-Queueing\MaxActiveDownloads=1
-Queueing\MaxActiveTorrents=15
-Queueing\MaxActiveUploads=15
-Queueing\QueueingEnabled=true
 WebUI\LocalHostAuth=false
+
+[RSS]
+AutoDownloader\DownloadRepacks=false

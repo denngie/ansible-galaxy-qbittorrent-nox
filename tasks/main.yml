@@ -1,55 +1,55 @@
 ---
 # tasks file for qbittorrent-nox
-- name: add qBittorrent repository
+- name: Add qBittorrent repository
   ansible.builtin.apt_repository:
-    repo: "ppa:qbittorrent-team/qbittorrent-{{ qbt_version }}"
+    repo: "ppa:qbittorrent-team/qbittorrent-{{ qbittorrent_nox_qbt_version }}"
     state: present
     update_cache: true
   become: true
 
-- name: install qBittorrent
+- name: Install qBittorrent
   ansible.builtin.apt:
     name: qbittorrent-nox
     state: present
   become: true
 
-- name: create local user
+- name: Create local user
   ansible.builtin.user:
-    name: "{{ qbt_user }}"
+    name: "{{ qbittorrent_nox_qbt_user }}"
     shell: /usr/sbin/nologin
     state: present
   become: true
 
-- name: create qBittorrent config directory
+- name: Create qBittorrent config directory
   ansible.builtin.file:
-    mode: 0755
-    path: "/home/{{ qbt_user }}/.config/qBittorrent/"
     state: directory
-    owner: "{{ qbt_user }}"
-    group: "{{ qbt_user }}"
+    path: "/home/{{ qbittorrent_nox_qbt_user }}/.config/qBittorrent/"
+    owner: "{{ qbittorrent_nox_qbt_user }}"
+    group: "{{ qbittorrent_nox_qbt_user }}"
+    mode: "0755"
   become: true
 
-- name: create qBittorrent config file
+- name: Create qBittorrent config file
   ansible.builtin.template:
     src: qBittorrent.conf.j2
-    dest: "/home/{{ qbt_user }}/.config/qBittorrent/qBittorrent.conf"
-    owner: "{{ qbt_user }}"
-    group: "{{ qbt_user }}"
-    mode: 0644
-    force: no
+    dest: "/home/{{ qbittorrent_nox_qbt_user }}/.config/qBittorrent/qBittorrent.conf"
+    owner: "{{ qbittorrent_nox_qbt_user }}"
+    group: "{{ qbittorrent_nox_qbt_user }}"
+    mode: "0644"
+    force: false
   become: true
 
-- name: create qBittorrent service file
+- name: Create qBittorrent service file
   ansible.builtin.template:
     src: qbittorrent.service.j2
     dest: /etc/systemd/system/qbittorrent.service
     owner: root
     group: root
-    mode: 0600
+    mode: "0644"
   become: true
-  notify: reload systemd daemon
+  notify: Reload systemd daemon
 
-- name: enable qBittorrent service
+- name: Enable qBittorrent service
   ansible.builtin.systemd:
     name: qbittorrent
     enabled: true

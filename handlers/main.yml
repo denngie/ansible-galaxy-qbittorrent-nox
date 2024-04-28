@@ -1,6 +1,6 @@
 ---
 # handlers file for qbittorrent-nox
-- name: reload systemd daemon
+- name: Reload systemd daemon
   ansible.builtin.systemd:
     daemon_reload: true
   become: true
